@@ -48,7 +48,7 @@ R.Version()
 #Vamos criar um objeto...
 
 #Antes... Determinar a pasta de trabalho
-setwd("C:\\Users\\Marco Faganello\\Dropbox\\Academia\\PED\\HZ244 - Comportamento Eleitoral e Eleições\\aula_060418\\R")
+setwd("C:\\Users\\Marco Faganello\\Dropbox\\Academia\\PED\\HZ244 - Comportamento Eleitoral e Eleições\\aula_060418")
 getwd()
 
 qualquernome <- 3
@@ -237,6 +237,22 @@ write.csv(dilma, file = "dilma.csv", row.names = F)
 write.csv(aecio, file = "aecio.csv", row.names = F)
 
 #agora no QGIS...
+
+#Correlação voto Dilma e Analfabetismo
+analfabr <- read.csv(file = "analfabr.csv", sep = ";", dec = ",", colClasses = c(rep("character", 4), "numeric"))
+tseibge <- read.csv(file = "TSE_COD_IBGE.csv", sep=";", colClasses = rep("character", 8))
+
+dilmamun <- eleicaoPres2 %>% filter(NOME_CANDIDATO == "DILMA VANA ROUSSEFF") #filtrando os dados da Dilma
+munvot <- eleicaoPres2 %>% group_by(CODIGO_MUNICIPIO) %>% summarise(VOTOS = sum(TOTAL_VOTOS))
+dilmamun <- dilmamun %>% group_by(CODIGO_MUNICIPIO) %>% summarise(VOTOS = sum(TOTAL_VOTOS))
+dilmamun$munvot <- munvot$VOTOS[match(dilmamun$CODIGO_MUNICIPIO, munvot$CODIGO_MUNICIPIO)]
+dilmamun$votpermun <- dilmamun$VOTOS / dilmamun$munvot * 100
+
+analfabr$codtse <- tseibge$TSEcod[match(analfabr$Codmun7, tseibge$IBGEcod)]
+dilmamun$analfa <- analfabr$T_ANALF18M[match(dilmamun$CODIGO_MUNICIPIO, analfabr$codtse)]
+
+plot(dilmamun$analfa, dilmamun$votpermun)
+cor.test(dilmamun$analfa, dilmamun$votpermun)
 
 #salvando seu workspace...
 save.image()
