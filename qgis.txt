@@ -1,0 +1,39 @@
+Caminho para abrir um shapefile no QGIS
+Camada -> Adicionar Nova Camada -> Vetorial
+Usar codificação UTF-8
+
+
+dilma <- eleicaoPres2 %>% filter(NOME_CANDIDATO == "DILMA VANA ROUSSEFF")
+aecio <- eleicaoPres2 %>% filter(NOME_CANDIDATO == "AÉCIO NEVES DA CUNHA")
+
+12, 27, 13, 16, 29, 23, 53, 32, 52, 21, 31, 50, 51, 15, 25, 26, 22, 41, 33, 24, 11, 14, 43, 42, 28, 35, 17, ND
+
+
+"12",
+"27",
+"13",
+"16",
+"29",
+"23",
+"53",
+"32",
+"52",
+"21",
+"31",
+"50",
+"51",
+"15",
+"25",
+"26",
+"22",
+"41",
+"33",
+"24",
+"11",
+"14",
+"43",
+"42",
+"28",
+"35",
+"17",
+"ND"
