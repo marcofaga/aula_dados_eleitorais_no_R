@@ -48,7 +48,7 @@ R.Version()
 #Vamos criar um objeto...
 
 #Antes... Determinar a pasta de trabalho
-setwd("C:\\Users\\Marco Faganello\\Dropbox\\Academia\\PED\\HZ244 - Comportamento Eleitoral e Eleições\\aula_060418")
+setwd("")
 getwd()
 
 qualquernome <- 3
